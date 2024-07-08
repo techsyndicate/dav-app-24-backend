@@ -63,7 +63,34 @@ router.post('/myposts', async (req, res) => {
         const {userid} = req.body
         if (!id) return res.json({success: false, message: "Invalid user. Please login again."})
         const foundMedia = await Media.findOne({user: userid})
-        if (!foundMedia) return res.json({success: false, message: "No posts found."})     
+        if (!foundMedia) return res.json({success: false, message: "No posts found."})
+        return res.json({success: true, message: {
+            image: foundMedia.image,
+            user: foundMedia.user,
+            title: foundMedia.title,
+            data: foundMedia.data,
+            date: new Date(foundMedia.date).toLocaleString('en-IN')
+        }})     
+    } catch (error) {
+        return res.json({success: false, message: "There was an error. Please login again."})
+    }
+})
+
+router.post('/getrandompost', async (req, res) => {
+    try {
+        const allPosts = await Media.find()
+        if (!allPosts) {
+            return res.json({success: false, message: "No posts found."})
+        }
+        const randomPost = allPosts[Math.floor(Math.random() * allPosts.length)]
+        if (!randomPost) return res.json({success: false, message: "No posts found."})
+        return res.json({success: true, message: {
+            title: randomPost.title,
+            data: randomPost.message,
+            image: randomPost.image,
+            date: new Date(randomPost.date).toLocaleString('en-IN'),
+            user: randomPost.user
+        }})
     } catch (error) {
         return res.json({success: false, message: "There was an error. Please login again."})
     }
