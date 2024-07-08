@@ -76,21 +76,13 @@ router.post('/myposts', async (req, res) => {
     }
 })
 
-router.post('/getrandompost', async (req, res) => {
+router.post('/getallposts', async (req, res) => {
     try {
-        const allPosts = await Media.find()
+        const allPosts = await Media.find().sort({date: 'desc'})
         if (!allPosts) {
             return res.json({success: false, message: "No posts found."})
         }
-        const randomPost = allPosts[Math.floor(Math.random() * allPosts.length)]
-        if (!randomPost) return res.json({success: false, message: "No posts found."})
-        return res.json({success: true, message: {
-            title: randomPost.title,
-            data: randomPost.message,
-            image: randomPost.image,
-            date: new Date(randomPost.date).toLocaleString('en-IN'),
-            user: randomPost.user
-        }})
+        return res.json({success: true, message: allPosts})
     } catch (error) {
         return res.json({success: false, message: "There was an error. Please login again."})
     }

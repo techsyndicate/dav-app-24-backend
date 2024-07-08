@@ -10,7 +10,7 @@ const loginRouter = require('./routers/loginRouter')
 const regRouter = require('./routers/regRouter')
 const mediaRouter = require('./routers/mediaRouter')
 
-app.use(express.json())
+app.use(express.json({limit: '50mb'}))
 app.use(express.urlencoded({extended: false}))
 app.use(cors())
 
