@@ -21,6 +21,9 @@ app.get('/testapi', (req, res) => {
     const path = require('path')
     return res.sendFile(path.join(__dirname, 'test.html'))
 })
+app.get('/info', (req, res) => {
+    res.end('Server running')
+})
 
 mongoose.connect(process.env.MONGO_URI, console.log('MONGO CONNECTED'))
 
