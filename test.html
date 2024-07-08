@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test</title>
+</head>
+<body>
+    <input type="text" id="path" placeholder="Path:"><br>
+    <textarea id="content" placeholder="Content:" id="content"></textarea><br>
+    <button onclick="handleTest(document.getElementById('path').value, document.getElementById('content').value)">Test</button><br>
+    <p id="result"></p>
+    <script>
+        async function handleTest(val, cont) {
+            fetch(val, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: cont
+            })
+            .then(data => data.text())
+            .then(txt => document.getElementById('result').innerHTML = txt)
+            .catch(err => document.getElementById('result').innerHTML = `Error: ${err}`)
+        }
+    </script>
+</body>
+</html>
