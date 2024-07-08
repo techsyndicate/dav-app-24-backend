@@ -24,7 +24,6 @@ app.get('/testapi', (req, res) => {
     const path = require('path')
     return res.sendFile(path.join(__dirname, 'test.html'))
 })
-
 mongoose.connect(process.env.MONGO_URI, console.log('MONGO CONNECTED'))
 
 app.listen(PORT, console.log(`DAV APP listening on port ${PORT}`))
