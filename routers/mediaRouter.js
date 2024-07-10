@@ -111,6 +111,7 @@ router.post('/like', async (req, res) => {
                 likes: foundMedia.likes + 1
             }
         })
+        return res.json({success: true})
     } catch (error) {
         console.log(error)
         return res.json({success: false, message: "There was an error. Please login again."})
@@ -132,6 +133,7 @@ router.post('/unlike', async (req, res) => {
                 likes: foundMedia.likes - 1
             }
         })
+        return res.json({success: true})
     } catch (error) {
         console.log(error)
         return res.json({success: false, message: "There was an error. Please login again."})
