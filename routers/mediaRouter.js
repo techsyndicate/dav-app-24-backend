@@ -85,7 +85,7 @@ router.post('/myposts', async (req, res) => {
 
 router.post('/getallposts', async (req, res) => {
     try {
-        const allPosts = await Media.find().sort({date: 'desc'})
+        const allPosts = await Media.find().sort({date: 'asc'})
         if (!allPosts) {
             return res.json({success: false, message: "No posts found."})
         }
