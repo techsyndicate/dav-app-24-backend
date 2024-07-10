@@ -96,4 +96,46 @@ router.post('/getallposts', async (req, res) => {
     }
 })
 
+router.post('/like', async (req, res) => {
+    try {
+        const {id, userid} = req.body
+        if (!id || !userid) {
+            return res.json({success: false, message: "Invalid request."})
+        }
+        const foundUser = await User.findById(userid)
+        if (!foundUser) return res.json({success: false, message: "There was an error. Please login again."})
+        const foundMedia = await Media.findById(id)
+        if (!foundMedia) return res.json({success: false, message: "There was an error. Please login again."})
+        await Media.findByIdAndUpdate(id, {
+            $set: {
+                likes: foundMedia.likes + 1
+            }
+        })
+    } catch (error) {
+        console.log(error)
+        return res.json({success: false, message: "There was an error. Please login again."})
+    }
+})
+
+router.post('/unlike', async (req, res) => {
+    try {
+        const {id, userid} = req.body
+        if (!id || !userid) {
+            return res.json({success: false, message: "Invalid request."})
+        }
+        const foundUser = await User.findById(userid)
+        if (!foundUser) return res.json({success: false, message: "There was an error. Please login again."})
+        const foundMedia = await Media.findById(id)
+        if (!foundMedia) return res.json({success: false, message: "There was an error. Please login again."})
+        await Media.findByIdAndUpdate(id, {
+            $set: {
+                likes: foundMedia.likes - 1
+            }
+        })
+    } catch (error) {
+        console.log(error)
+        return res.json({success: false, message: "There was an error. Please login again."})
+    }
+})
+
 module.exports = router

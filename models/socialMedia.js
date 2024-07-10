@@ -11,7 +11,12 @@ const socialmediaSchema = mongoose.Schema({
     image: reqString,
     title: reqString,
     data: reqString,
-    name: reqString
+    name: reqString,
+    likes: {
+        type: Number,
+        required: true,
+        default: 0
+    }
 })
 
 module.exports = mongoose.model('media', socialmediaSchema)
