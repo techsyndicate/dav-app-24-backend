@@ -26,6 +26,7 @@ router.post('/create', async (req, res) => {
             data: data,
             image: response.data.data.link
         })
+        await newMedia.save()
         return res.json({success: true, message: response.data.data.link})
     } catch (error) {
         console.log(error)
