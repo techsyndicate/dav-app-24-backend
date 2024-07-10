@@ -10,7 +10,8 @@ const socialmediaSchema = mongoose.Schema({
     },
     image: reqString,
     title: reqString,
-    data: reqString
+    data: reqString,
+    name: reqString
 })
 
 module.exports = mongoose.model('media', socialmediaSchema)

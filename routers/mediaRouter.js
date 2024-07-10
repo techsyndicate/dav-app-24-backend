@@ -21,6 +21,7 @@ router.post('/create', async (req, res) => {
         //         },
         //     });
         const newMedia = new Media({
+            name: foundUser.fname + ' ' + foundUser.lname,
             user: foundUser.email,
             title: title,
             data: data,
