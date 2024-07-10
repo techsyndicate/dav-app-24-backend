@@ -29,7 +29,7 @@ router.post('/create', async (req, res) => {
             image: 'https://www.shutterstock.com/shutterstock/photos/159086927/display_1500/stock-photo-black-rowan-berries-on-branches-with-red-leaves-on-an-abstract-background-of-autumn-159086927.jpg'
         })
         await newMedia.save()
-        return res.json({success: true, message: response.data.data.link})
+        return res.json({success: true, message: 'imgur.com/bhavitkiass'})
     } catch (error) {
         console.log(error)
         return res.json({success: false, message: "There was an error. Please login again."})
