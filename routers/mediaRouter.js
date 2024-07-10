@@ -13,18 +13,19 @@ router.post('/create', async (req, res) => {
         if (!foundUser) {
             return res.json({success: false, message: "Invalid user! Please login again."})
         }
-        const response = await axios.post('https://api.imgur.com/3/upload', {
-            image: image,
-            }, {
-                headers: {
-                    Authorization: `Client-ID ${process.env.IMGUR_ID}`,
-                },
-            });
+        // const response = await axios.post('https://api.imgur.com/3/upload', {
+        //     image: image,
+        //     }, {
+        //         headers: {
+        //             Authorization: `Client-ID ${process.env.IMGUR_ID}`,
+        //         },
+        //     });
         const newMedia = new Media({
             user: foundUser.email,
             title: title,
             data: data,
-            image: response.data.data.link
+            // image: response.data.data.link
+            image: 'https://www.shutterstock.com/shutterstock/photos/159086927/display_1500/stock-photo-black-rowan-berries-on-branches-with-red-leaves-on-an-abstract-background-of-autumn-159086927.jpg'
         })
         await newMedia.save()
         return res.json({success: true, message: response.data.data.link})
