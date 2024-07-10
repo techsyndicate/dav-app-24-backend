@@ -27,6 +27,7 @@ router.post('/create', async (req, res) => {
         })
         return res.json({success: true, message: response.data.data.link})
     } catch (error) {
+        console.log(error)
         return res.json({success: false, message: "There was an error. Please login again."})
     }
 })
@@ -54,6 +55,7 @@ router.post('/get', async (req, res) => {
             data: foundMedia.data
         }})
     } catch (error) {
+        console.log(error)
         return res.json({success: false, message: 'There was an error. Please login again.'})
     }
 })
@@ -72,6 +74,7 @@ router.post('/myposts', async (req, res) => {
             date: new Date(foundMedia.date).toLocaleString('en-IN')
         }})     
     } catch (error) {
+        console.log(error)
         return res.json({success: false, message: "There was an error. Please login again."})
     }
 })
@@ -84,6 +87,7 @@ router.post('/getallposts', async (req, res) => {
         }
         return res.json({success: true, message: allPosts})
     } catch (error) {
+        console.log(error)
         return res.json({success: false, message: "There was an error. Please login again."})
     }
 })
